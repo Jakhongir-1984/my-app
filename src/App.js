@@ -12,13 +12,15 @@ function App() {
 
   return (
     <>
-      <h3>Count: {count}</h3>
-      <button 
-      onClick={inc}
-      className="btn btn-success">Incr</button>
-      <button 
-      onClick={dec}
-      className="btn btn-danger">Decr</button>  
+      <div className="app">
+        <h3>Count: {count}</h3>
+        <button 
+        onClick={inc}
+        className="btn btn-success">Incr</button>
+        <button 
+        onClick={dec}
+        className="btn btn-danger">Decr</button> 
+      </div>  
     </>    
   );
 }
