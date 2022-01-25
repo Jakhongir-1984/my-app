@@ -2,26 +2,24 @@ import React, {useState} from "react";
 import "./style/style.css"
 
 function App() {
-  const [count, setCount] = useState(0)
+  
   const [toggleBtn, setToggleBtn] = useState(false)
+  const [value, setValue] = useState("sam")
 
-  function inc() {
-    setCount(prev => prev + 1)
-  }
-  function dec() {
-    setCount(prev => prev - 1)
-  }
+  
 
   return (
     <>
       <div className="app w-50 mx-auto">
-        <h3>Count: {count}</h3>
-        <button 
-            onClick={inc}
-            className="btn btn-success">Incr</button>
-        <button 
-          onClick={dec}
-          className="btn btn-danger">Decr</button> 
+        
+        <hr/>
+        <p>Value: {value}</p>
+        <input 
+          className="form-control" 
+          type="text" 
+          value={value}
+          onChange={event => setValue(event.target.value)}
+        />
         <button
           onClick={() => setToggleBtn(!toggleBtn)} 
           className="btn btn-secondary">Toggle btn</button>
