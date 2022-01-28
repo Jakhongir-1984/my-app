@@ -20,7 +20,6 @@ export default function Counter() {
         <button 
           onClick={dec}
           className="btn btn-danger">Decr</button> 
-        
     </>
   )
 }

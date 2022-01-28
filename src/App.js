@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "./style/style.css"
+import Counter from "./components/Counter";
 
 function App() {
   
@@ -11,7 +12,7 @@ function App() {
   return (
     <>
       <div className="app w-50 mx-auto">
-        
+        <Counter />
         <hr/>
         <p>Value: {value}</p>
         <input 
