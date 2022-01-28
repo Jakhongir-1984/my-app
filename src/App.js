@@ -1,30 +1,18 @@
 import React, {useState} from "react";
 import "./style/style.css"
 import Counter from "./components/Counter";
+import InputVal from "./components/InputVal";
+import ToggleBtn from "./components/ToggleBtn";
 
 function App() {
   
-  const [toggleBtn, setToggleBtn] = useState(false)
-  
-
-  
-
   return (
     <>
       <div className="app w-50 mx-auto">
         <Counter />
         <hr/>
-        
-        <button
-          onClick={() => setToggleBtn(!toggleBtn)} 
-          className="btn btn-secondary">Toggle btn</button>
-        {toggleBtn 
-          ? <p className="lead">
-              YouTube Content
-            </p>
-          : null
-        }
-       
+        <InputVal />
+        <ToggleBtn />
       </div>  
     </>    
   );
