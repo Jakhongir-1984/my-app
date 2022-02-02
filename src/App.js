@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import TableHeader from "./components/TableHeader";
-import TableItem from "./components/TableItem";
 import "./style/styles.css"
-
+import TableList from "./components/TableList";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -12,17 +10,22 @@ function App() {
     {id: 4, title: "PHP", stack: "Back End"},
   ])
 
+  const [posts2, setPosts2] = useState([
+    {id: 1, title: "HTML", stack: "Template"},
+    {id: 2, title: "CSS", stack: "Animation"},
+    {id: 3, title: "Bootstrap", stack: "Theme"},
+    {id: 4, title: "SASS", stack: "Styles"},
+  ])
+
   return (
-    <div className="app w-50 mx-auto">
-      <table className="table table-striped"> 
-        <TableHeader />
-        <tbody>
-        {posts.map(post => (
-          <TableItem post={post} />
-        ))} 
-        </tbody>
-      </table>
-    </div>    
+    <>
+      <div className="app w-50 mx-auto">
+        <TableList posts={posts} title="Programming Language" />
+      </div>
+      <div className="app w-50 mx-auto">
+        <TableList posts={posts2} title="Free Courses" />
+      </div>
+    </>    
   );
 }
 
