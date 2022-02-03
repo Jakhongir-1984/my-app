@@ -10,22 +10,24 @@ function App() {
     {id: 4, title: "PHP", stack: "Back End"},
   ])
 
-  const [posts2, setPosts2] = useState([
-    {id: 1, title: "HTML", stack: "Template"},
-    {id: 2, title: "CSS", stack: "Animation"},
-    {id: 3, title: "Bootstrap", stack: "Theme"},
-    {id: 4, title: "SASS", stack: "Styles"},
-  ])
-
   return (
-    <>
-      <div className="app w-50 mx-auto">
-        <TableList posts={posts} title="Programming Language" />
-      </div>
-      <div className="app w-50 mx-auto">
-        <TableList posts={posts2} title="Free Courses" />
-      </div>
-    </>    
+    <div className="app w-50 mx-auto">
+      <form>
+        <h5 className="text-center">Create your first post</h5>
+        <input 
+          type="text" 
+          className="form-control" 
+          placeholder="Programming Language" 
+        />
+        <input 
+          type="text" 
+          className="form-control my-3" 
+          placeholder="Enter your favourite stack" 
+        />
+        <button className="btn btn-primary w-100">Add post</button>
+      </form>
+      <TableList posts={posts} title="Programming Language" />
+    </div> 
   );
 }
 
