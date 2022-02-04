@@ -2,14 +2,14 @@ import React from 'react';
 
 const TableHeader = () => {
   return (
-      <thaed>
+      <thead>
         <tr>
           <th>#</th>
           <th>Programming</th>
           <th>Stack</th>
           <th>Actions</th>
         </tr>
-      </thaed>
+      </thead>
   );
 };
 

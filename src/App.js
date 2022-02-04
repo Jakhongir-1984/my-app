@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./style/styles.css"
 import TableList from "./components/TableList";
+import MyButton from "./components/UI/button/MyButton";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -24,7 +25,7 @@ function App() {
           className="form-control my-3" 
           placeholder="Enter your favourite stack" 
         />
-        <button className="btn btn-primary w-100">Add post</button>
+        <MyButton />
       </form>
       <TableList posts={posts} title="Programming Language" />
     </div> 
