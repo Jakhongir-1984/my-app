@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState, useRef} from "react";
 import "./style/styles.css"
 import TableList from "./components/TableList";
 import MyButton from "./components/UI/button/MyButton";
@@ -11,6 +11,11 @@ function App() {
     {id: 3, title: "C#", stack: "Game"},
     {id: 4, title: "PHP", stack: "Back End"},
   ])
+  const [title, setTitle] = useState('')
+  
+  const addPost = (e) => {
+    e.preventDefault()
+  }
 
   return (
     <div className="app w-50 mx-auto">
@@ -19,14 +24,18 @@ function App() {
         <MyInput 
           type="text" 
           className="form-control" 
-          placeholder="Programming Language" 
+          placeholder="Programming Language"
+          value={title}
+          onChange={e => setTitle(e.target.value)} 
         />
         <MyInput 
           type="text" 
           className="form-control my-3" 
-          placeholder="Enter your favourite stack" 
+          placeholder="Enter your favourite stack"
+          value={title}
+          onChange={e => setTitle(e.target.value)} 
         />
-        <MyButton>Add Post</MyButton>
+        <MyButton onClick={addPost}>Add Post</MyButton>
       </form>
       <TableList posts={posts} title="Programming Language" />
     </div> 
