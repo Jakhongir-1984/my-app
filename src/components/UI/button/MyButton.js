@@ -1,8 +1,8 @@
 import React from 'react';
 
-function MyButton(props) {
+function MyButton({children, ...props}) {
   return (
-    <button className="btn btn-primary w-100">Add Post</button>
+    <button {...props} className="btn btn-primary w-100">{children}</button>
   );
 }
 

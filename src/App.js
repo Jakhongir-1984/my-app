@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./style/styles.css"
 import TableList from "./components/TableList";
 import MyButton from "./components/UI/button/MyButton";
+import MyInput from "./components/UI/input/MyInput";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -15,17 +16,17 @@ function App() {
     <div className="app w-50 mx-auto">
       <form>
         <h5 className="text-center">Create your first post</h5>
-        <input 
+        <MyInput 
           type="text" 
           className="form-control" 
           placeholder="Programming Language" 
         />
-        <input 
+        <MyInput 
           type="text" 
           className="form-control my-3" 
           placeholder="Enter your favourite stack" 
         />
-        <MyButton />
+        <MyButton>Add Post</MyButton>
       </form>
       <TableList posts={posts} title="Programming Language" />
     </div> 

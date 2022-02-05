@@ -1,4 +1,5 @@
 import React from 'react';
+import MyButton from './UI/button/MyButton';
 
 const TableItem = (props) => {
   return (
@@ -7,7 +8,7 @@ const TableItem = (props) => {
       <td>{props.post.title}</td>
       <td>{props.post.stack}</td>
       <td>
-        <button className="btn btn-outline-danger">delete</button>
+        <MyButton>Delete</MyButton>
       </td>
     </tr>
   );
