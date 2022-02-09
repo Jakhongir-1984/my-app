@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "./style/styles.css"
 import TableList from "./components/TableList";
 import PostForm from "./components/PostForm";
+import MySelect from "./components/UI/select/MySelect";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -10,6 +11,8 @@ function App() {
     {id: 3, title: "C#", stack: "Game"},
     {id: 4, title: "PHP", stack: "Back End"},
   ])
+
+  const [select, setSelect] = useState("")
   
   const createPost = (newPost) => {
     setPosts([...posts, newPost])  
@@ -19,14 +22,24 @@ function App() {
     setPosts(posts.filter(s => s.id !== post.id))
   }
 
+  const sortPost = (sort) => {
+    setSelect(sort)
+    setPosts([...posts].sort())
+  } 
+
   return (
     <div className="app w-50 mx-auto">
-      <PostForm createPost={createPost}/>
+      <PostForm createPost={createPost} />
       <div className="d-flex flex-row-reverse my-2">
-        <select className="form-select w-50">
-          <option value="val">Sorted by Title</option>
-          <option value="val">Sorted by Job</option>
-        </select>  
+        <MySelect 
+          value={select}
+          onChane={sortPost}
+          defaultValue="Sorted by"
+          option={[
+            {value: "programming", name: "Programming"},
+            {value: "jobs", name: "Jobs"}
+          ]}
+        />  
       </div>
       {posts.length
       ? <TableList remove={removePost} posts={posts} title="Programming Language" />
