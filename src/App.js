@@ -3,6 +3,7 @@ import "./style/styles.css"
 import TableList from "./components/TableList";
 import PostForm from "./components/PostForm";
 import MySelect from "./components/UI/select/MySelect";
+import MyInput from "./components/UI/input/MyInput";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -13,6 +14,7 @@ function App() {
   ])
 
   const [select, setSelect] = useState("")
+  const [search, setSearch] = useState("")
   
   const createPost = (newPost) => {
     setPosts([...posts, newPost])  
@@ -30,7 +32,13 @@ function App() {
   return (
     <div className="app w-50 mx-auto">
       <PostForm createPost={createPost} />
-      <div className="d-flex flex-row-reverse my-2">
+      <div className="d-flex justify-content-between my-2">
+        <MyInput
+          placeholder="Search..."
+          className="form-control"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />  
         <MySelect 
           value={select}
           onChange={sortPost}
