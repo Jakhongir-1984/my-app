@@ -6,10 +6,10 @@ import MySelect from "./components/UI/select/MySelect";
 
 function App() {
   const [posts, setPosts] = useState([
-    {id: 1, title: "JavaScript", stack: "MERN Stack"},
-    {id: 2, title: "Python", stack: "Full-Stack"},
-    {id: 3, title: "C#", stack: "Game"},
-    {id: 4, title: "PHP", stack: "Back End"},
+    {id: 1, title: 'JavaScript', stack: "MERN Stack"},
+    {id: 2, title: 'Python', stack: "Full-Stack"},
+    {id: 3, title: 'C#', stack: "Game"},
+    {id: 4, title: 'PHP', stack: "Back End"},
   ])
 
   const [select, setSelect] = useState("")
@@ -24,7 +24,7 @@ function App() {
 
   const sortPost = (sort) => {
     setSelect(sort)
-    setPosts([...posts].sort())
+    setPosts([...posts].sort((a, b) => a[sort].localeCompare(b[sort])))
   } 
 
   return (
@@ -33,11 +33,11 @@ function App() {
       <div className="d-flex flex-row-reverse my-2">
         <MySelect 
           value={select}
-          onChane={sortPost}
+          onChange={sortPost}
           defaultValue="Sorted by"
           option={[
-            {value: "programming", name: "Programming"},
-            {value: "jobs", name: "Jobs"}
+            {value: "title", name: "Programming"},
+            {value: "stack", name: "Jobs"}
           ]}
         />  
       </div>
