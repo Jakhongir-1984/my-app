@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useMemo} from "react";
 import "./style/styles.css"
 import TableList from "./components/TableList";
 import PostForm from "./components/PostForm";
@@ -15,6 +15,13 @@ function App() {
 
   const [select, setSelect] = useState("")
   const [search, setSearch] = useState("")
+ 
+  const getSortedPosts = useMemo(() => {
+    if(select) {
+      return [...posts].sort((a, b) => a[select].localeCompare(b[select]))
+    }
+    return posts
+  }, [select, posts])
   
   const createPost = (newPost) => {
     setPosts([...posts, newPost])  
@@ -26,7 +33,6 @@ function App() {
 
   const sortPost = (sort) => {
     setSelect(sort)
-    setPosts([...posts].sort((a, b) => a[sort].localeCompare(b[sort])))
   } 
 
   return (
@@ -50,7 +56,7 @@ function App() {
         />  
       </div>
       {posts.length
-      ? <TableList remove={removePost} posts={posts} title="Programming Language" />
+      ? <TableList remove={removePost} posts={getSortedPosts} title="Programming Language" />
       : <h6 className="my-3 text-center">You should add some Post</h6>
       }  
     </div> 
