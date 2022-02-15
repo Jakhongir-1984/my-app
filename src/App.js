@@ -2,26 +2,28 @@ import React, {useState, useMemo} from "react";
 import "./style/styles.css"
 import TableList from "./components/TableList";
 import PostForm from "./components/PostForm";
-import MySelect from "./components/UI/select/MySelect";
-import MyInput from "./components/UI/input/MyInput";
+import FilterAndSearch from "./components/FilterAndSearch";
 
 function App() {
   const [posts, setPosts] = useState([
-    {id: 1, title: 'JavaScript', stack: "MERN Stack"},
+    {id: 1, title: 'JavaScript', stack: "Front-End"},
     {id: 2, title: 'Python', stack: "Full-Stack"},
     {id: 3, title: 'C#', stack: "Game"},
-    {id: 4, title: 'PHP', stack: "Back End"},
+    {id: 4, title: 'PHP', stack: "Back-End"},
   ])
 
-  const [select, setSelect] = useState("")
-  const [search, setSearch] = useState("")
+  const [filter, setFilter] = useState({sort: "", query: ""})
  
-  const getSortedPosts = useMemo(() => {
-    if(select) {
-      return [...posts].sort((a, b) => a[select].localeCompare(b[select]))
+  const SortedPosts = useMemo(() => {
+    if(filter.sort) {
+      return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
     }
     return posts
-  }, [select, posts])
+  }, [filter.sort, posts])
+
+  const sortedAndSearchPosts = useMemo(() => {
+    return SortedPosts.filter(post => post.title.toLowerCase().includes(filter.query.toLowerCase()))
+  }, [filter.query, SortedPosts])
   
   const createPost = (newPost) => {
     setPosts([...posts, newPost])  
@@ -31,34 +33,11 @@ function App() {
     setPosts(posts.filter(s => s.id !== post.id))
   }
 
-  const sortPost = (sort) => {
-    setSelect(sort)
-  } 
-
   return (
     <div className="app w-50 mx-auto">
       <PostForm createPost={createPost} />
-      <div className="d-flex justify-content-between my-2">
-        <MyInput
-          placeholder="Search..."
-          className="form-control"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-        />  
-        <MySelect 
-          value={select}
-          onChange={sortPost}
-          defaultValue="Sorted by"
-          option={[
-            {value: "title", name: "Programming"},
-            {value: "stack", name: "Jobs"}
-          ]}
-        />  
-      </div>
-      {posts.length
-      ? <TableList remove={removePost} posts={getSortedPosts} title="Programming Language" />
-      : <h6 className="my-3 text-center">You should add some Post</h6>
-      }  
+        <FilterAndSearch filter={filter} setFilter={setFilter} />
+        <TableList remove={removePost} posts={sortedAndSearchPosts} title="Programming Language" />
     </div> 
   );
 }

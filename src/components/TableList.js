@@ -3,6 +3,13 @@ import TableHeader from "./TableHeader";
 import TableItem from "./TableItem";
 
 const TableList = ({posts, title, remove}) => {
+  if(!posts.length) {
+    return (
+      <h6 className="text-center">
+        Not Found
+      </h6>
+    )
+  }
   return (
     <>
       <h5 className="text-center">{title}</h5>
